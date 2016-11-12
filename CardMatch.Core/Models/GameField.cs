@@ -1,16 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CardMatch.Core.Models
 {
     public class GameField
     {
+        private static object __lock;
+
+        private static GameField __instance;
+
         private Card[,] _field;
 
-        public GameField(Card[,] field)
+        protected GameField()
+        {
+        }
+
+        public static GameField Instance
+        {
+            get
+            {
+                if (__instance == null)
+                {
+                    lock (__lock)
+                    {
+                        if (__instance == null)
+                        {
+                            __instance = new GameField();
+                        }
+                    }
+                }
+
+                return __instance;
+            }
+        }
+
+        public void SetField(Card[,] field)
         {
             _field = field;
         }

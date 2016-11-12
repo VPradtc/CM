@@ -26,7 +26,10 @@ namespace CardMatch.Core.GameFields.Core
                 }
             }
 
-            return new GameField(content);
+            var gameField = GameField.Instance;
+            gameField.SetField(content);
+
+            return gameField;
         }
 
         public GameField Create()
