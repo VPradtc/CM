@@ -51,7 +51,6 @@
     <Compile Include="GameFields\Factory\AverageGameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\LargeGameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\SmallGameFieldFactory.cs" />
-    <Compile Include="GameFields\Cards\Models\Card.cs" />
     <Compile Include="GameFields\Cards\Models\Bonus\_BonusCard.cs" />
     <Compile Include="GameFields\Cards\Models\Regular\IPairedCard.cs" />
     <Compile Include="GameFields\Cards\Models\Regular\RegularCard.cs" />
