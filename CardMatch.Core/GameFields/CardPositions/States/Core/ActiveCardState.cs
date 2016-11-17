@@ -9,7 +9,7 @@ namespace CardMatch.Core.GameFields.CardPositions.States
 {
     public abstract class ActiveCardState<TCard> : IActiveCardState
     {
-        private readonly ActiveCard<TCard> _owner;
+        protected readonly ActiveCard<TCard> _owner;
 
         public ActiveCardState(ActiveCard<TCard> owner)
         {

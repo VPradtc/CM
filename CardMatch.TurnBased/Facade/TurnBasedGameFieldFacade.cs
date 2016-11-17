@@ -1,4 +1,5 @@
 ﻿using CardMatch.Core.GameFields;
+using CardMatch.Core.GameFields.CardPositions;
 using CardMatch.Core.GameFields.Core;
 using CardMatch.TurnBased.GameFields;
 using System;
@@ -8,9 +9,9 @@ namespace CardMatch.TurnBased.Facade
 {
     public class TurnBasedGameFieldFacade<TCard> : ITurnBasedGameFieldFacade<TCard>
     {
-        private readonly IGameFieldFactory<TCard, TurnBasedGameState> _gameFactory;
+        private readonly IGameFieldFactory<TCard, TurnBasedGameState<TCard>> _gameFactory;
 
-        private GameField<TCard, TurnBasedGameState> _gameField;
+        private GameField<TCard, TurnBasedGameState<TCard>> _gameField;
 
         #region Singleton
         private static object __lock = new object();
@@ -36,7 +37,7 @@ namespace CardMatch.TurnBased.Facade
         } 
         #endregion
 
-        public TurnBasedGameFieldFacade(IGameFieldFactory<TCard, TurnBasedGameState> gameFactory)
+        public TurnBasedGameFieldFacade(IGameFieldFactory<TCard, TurnBasedGameState<TCard>> gameFactory)
         {
             _gameFactory = gameFactory;
         }
@@ -46,9 +47,9 @@ namespace CardMatch.TurnBased.Facade
             _gameField = _gameFactory.Create();
         }
 
-        public ICollection<TCard> GetRemainingCards()
+        public ICollection<ActiveCard<TCard>> GetRemainingCards()
         {
-            throw new NotImplementedException();
+            return _gameField.Context.GetActiveCards();
         }
 
         public void PickCard(TCard card)
@@ -58,7 +59,7 @@ namespace CardMatch.TurnBased.Facade
 
         public int GetRemainingTurns()
         {
-            throw new NotImplementedException();
+            return _gameField.Context.TurnsLeft;
         }
 
         public event EventHandler<CardRevelationEventArgs<TCard>> OnCardRevealed;

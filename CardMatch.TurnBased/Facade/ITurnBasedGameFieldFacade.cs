@@ -1,4 +1,5 @@
-﻿using CardMatch.Core.Models;
+﻿using CardMatch.Core.GameFields.CardPositions;
+using CardMatch.Core.Models;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace CardMatch.TurnBased.Facade
     {
         void NewGame();
 
-        ICollection<TCard> GetRemainingCards();
+        ICollection<ActiveCard<TCard>> GetRemainingCards();
         void PickCard(TCard card);
 
         int GetRemainingTurns();

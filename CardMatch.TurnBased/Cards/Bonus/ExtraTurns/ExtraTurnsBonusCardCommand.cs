@@ -4,9 +4,9 @@ using CardMatch.TurnBased.GameFields;
 
 namespace CardMatch.TurnBased.Cards.Bonus
 {
-    public class ExtraTurnsBonusCardCommand : ICardCommand<ExtraTurnsBonusCard, TurnBasedGameState>
+    public class ExtraTurnsBonusCardCommand<TCard> : ICardCommand<ExtraTurnsBonusCard, TurnBasedGameState<TCard>>
     {
-        public void Execute(ExtraTurnsBonusCard card, TurnBasedGameState context)
+        public void Execute(ExtraTurnsBonusCard card, TurnBasedGameState<TCard> context)
         {
             context.TurnsLeft += card.TurnCount;
         }

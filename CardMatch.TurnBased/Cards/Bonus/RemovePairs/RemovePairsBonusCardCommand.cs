@@ -4,9 +4,9 @@ using CardMatch.TurnBased.GameFields;
 
 namespace CardMatch.TurnBased.Cards.Bonus
 {
-    public class RemovePairsBonusCardCommand : ICardCommand<RemovePairsBonusCard, TurnBasedGameState>
+    public class RemovePairsBonusCardCommand<TCard> : ICardCommand<RemovePairsBonusCard, TurnBasedGameState<TCard>>
     {
-        public void Execute(RemovePairsBonusCard card, TurnBasedGameState context)
+        public void Execute(RemovePairsBonusCard card, TurnBasedGameState<TCard> context)
         {
 
         }
