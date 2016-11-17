@@ -54,9 +54,9 @@ namespace CardMatch.TurnBased.Facade
             return _gameField.Context.GetActiveCards();
         }
 
-        public void PickCard(TCard card)
+        public void PickCard(ActiveCard<TCard> card)
         {
-            throw new NotImplementedException();
+            _gameField.PickCard(card);
         }
 
         public int GetRemainingTurns()

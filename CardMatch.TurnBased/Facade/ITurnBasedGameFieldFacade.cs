@@ -12,7 +12,7 @@ namespace CardMatch.TurnBased.Facade
         void NewGame();
 
         ICollection<ActiveCard<TCard>> GetRemainingCards();
-        void PickCard(TCard card);
+        void PickCard(ActiveCard<TCard> card);
 
         int GetRemainingTurns();
 

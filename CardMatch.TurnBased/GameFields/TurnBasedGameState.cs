@@ -2,8 +2,11 @@
 using CardMatch.Core.GameFields.CardPositions;
 using CardMatch.Core.Models.Cards;
 using CardMatch.Core.Models.Enums;
-using System.Linq;
 using CardMatch.Core.GameFields.CardPositions.States;
+using System.Linq;
+using System;
+using System.Collections.Generic;
+using CardMatch.TurnBased.Facade;
 
 namespace CardMatch.TurnBased.GameFields
 {
@@ -17,6 +20,14 @@ namespace CardMatch.TurnBased.GameFields
         public TurnBasedGameState(GameField<TCard, TurnBasedGameState<TCard>> gamefield)
         {
             _gameField = gamefield;
+        }
+
+        private void SafeInvoke<T>(EventHandler<T> targetEvent, T eventArgs)
+        {
+            if (targetEvent != null)
+            {
+                targetEvent.Invoke(this, eventArgs);
+            }
         }
 
         public ActiveCard<TCard>[] GetActiveCards()
@@ -40,11 +51,29 @@ namespace CardMatch.TurnBased.GameFields
             {
                 card.State = new ClosedActiveCardState<TCard>(card);
             }
+
+            SafeInvoke<EventArgs>(OnCardsClosed, new EventArgs());
         }
 
-        public void CreateMatch(System.Collections.Generic.List<ActiveCard<TCard>> pairedCards)
+        public void CreateMatch(List<ActiveCard<TCard>> pairedCards)
         {
-            throw new System.NotImplementedException();
+            foreach (var card in pairedCards)
+            {
+                if (!_gameField.Cards.Contains(card))
+                {
+                    throw new InvalidOperationException();
+                }
+
+                card.State = new RemovedActiveCardState<TCard>(card);
+            }
+
+            SafeInvoke(OnCardMatched, new CardMatchEventArgs<TCard>()
+            {
+                CardPair = new Tuple<TCard, TCard>(pairedCards.First().Card, pairedCards.Last().Card)
+            });
         }
+
+        public event EventHandler<EventArgs> OnCardsClosed;
+        public event EventHandler<CardMatchEventArgs<TCard>> OnCardMatched;
     }
 }
