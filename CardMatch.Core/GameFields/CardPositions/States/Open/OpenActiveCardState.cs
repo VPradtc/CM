@@ -8,22 +8,21 @@ using System.Threading.Tasks;
 
 namespace CardMatch.Core.GameFields.CardPositions.States
 {
-    public class ClosedActiveCardState<TCard> : ActiveCardState<TCard>
+    public class OpenActiveCardState<TCard> : ActiveCardState<TCard>
         where TCard : ICard
     {
-        public ClosedActiveCardState(ActiveCard<TCard> owner)
+        public OpenActiveCardState(ActiveCard<TCard> owner)
             : base(owner)
         {
         }
 
         public override CardStatus Status
         {
-            get { return CardStatus.Closed; }
+            get { return CardStatus.Revealed; }
         }
 
         public override void Trigger()
         {
-            _owner.State = new OpenActiveCardState<TCard>(_owner);
         }
     }
 }

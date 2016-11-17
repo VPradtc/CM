@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameFields\CardPositions\ActiveCard.cs" />
+    <Compile Include="GameFields\CardPositions\States\Open\OpenActiveCardState.cs" />
     <Compile Include="GameFields\CardPositions\States\Removed\RemovedActiveCardState.cs" />
     <Compile Include="GameFields\CardPositions\States\Core\ActiveCardState.cs" />
     <Compile Include="GameFields\CardPositions\States\Core\IActiveCardState.cs" />
