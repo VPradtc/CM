@@ -39,13 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cards\Bonus\RemovePairs\RemovePairsBonusCard.cs" />
+    <Compile Include="Cards\Bonus\RemovePairs\RemovePairsBonusCardCommand.cs" />
+    <Compile Include="Cards\Bonus\ExtraTurns\ExtraTurnsBonusCardCommand.cs" />
+    <Compile Include="Cards\Bonus\ExtraTurns\ExtraTurnsBonusCard.cs" />
+    <Compile Include="Facade\CardBonusEventArgs.cs" />
+    <Compile Include="Facade\CardMatchEventArgs.cs" />
+    <Compile Include="Facade\CardRevelationEventArgs.cs" />
+    <Compile Include="Facade\ITurnBasedGameFieldFacade.cs" />
+    <Compile Include="Facade\TurnBasedGameFieldFacade.cs" />
     <Compile Include="GameFields\TurnBasedGameField.cs" />
     <Compile Include="GameFields\TurnBasedGameState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cards\Bonus\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CardMatch.Core\CardMatch.Core.csproj">
       <Project>{1ef4d654-46b0-44d1-90bc-59edaf6fca78}</Project>

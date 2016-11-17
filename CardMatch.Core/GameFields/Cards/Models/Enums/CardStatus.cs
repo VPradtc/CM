@@ -10,5 +10,6 @@ namespace CardMatch.Core.Models.Enums
     {
         Closed,
         Revealed,
+        Removed,
     }
 }

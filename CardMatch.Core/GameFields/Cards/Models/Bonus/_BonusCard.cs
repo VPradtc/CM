@@ -1,11 +1,7 @@
-﻿using CardMatch.Core.Models.Cards.Bonus;
-
-namespace CardMatch.Core.Models.Cards
+﻿namespace CardMatch.Core.Models.Cards
 {
-    public abstract class BonusCard<TTarget> : Card, IActionCard<TTarget>
+    public abstract class BonusCard : Card
     {
-        public string Name { get; set; }
-
-        public abstract void Apply(TTarget target);
+        public abstract string Name { get; }
     }
 }

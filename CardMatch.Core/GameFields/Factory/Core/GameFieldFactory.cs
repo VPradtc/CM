@@ -24,18 +24,19 @@ namespace CardMatch.Core.GameFields.Core
 
         public GameField<TCard, TContext> Create(int rowCount, int columnCount)
         {
-            var content = new TCard[rowCount, columnCount];
+            var cardCount = rowCount * columnCount;
+            var content = new List<TCard>();
 
             for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
             {
                 for (int columnIndex = 0; columnIndex < columnCount; columnIndex++)
                 {
-                    content[rowIndex, columnIndex] = CreateCard(rowIndex, columnIndex);
+                    content.Add(CreateCard(rowIndex, columnIndex));
                 }
             }
 
-            var gameField = GameField<TCard, TContext>.Instance;
-            gameField.SetField(content);
+            var gameField = new GameField<TCard, TContext>();
+            gameField.SetCards(content.ToArray());
 
             return gameField;
         }

@@ -1,38 +1,28 @@
-﻿using CardMatch.Core.Models;
+﻿using CardMatch.Core.GameFields.CardPositions;
+using CardMatch.Core.Models;
+using System.Linq;
 
 namespace CardMatch.Core.GameFields
 {
     public class GameField<TCard, TContext>
     {
-        private static object __lock = new object();
-        private static GameField<TCard, TContext> __instance;
-
-        public static GameField<TCard, TContext> Instance
-        {
-            get
-            {
-                if (__instance == null)
-                {
-                    lock (__lock)
-                    {
-                        if (__instance == null)
-                        {
-                            __instance = new GameField<TCard, TContext>();
-                        }
-                    }
-                }
-
-                return __instance;
-            }
-        }
-
-        private TCard[,] _field;
+        private ActiveCard<TCard>[] _cards;
 
         public TContext Context { get; set; }
 
-        public void SetField(TCard[,] field)
+        public void SetCards(TCard[] cards)
         {
-            _field = field;
+            _cards = cards.Select(card => CreateActiveCard(card)).ToArray();
+        }
+
+        private ActiveCard<TCard> CreateActiveCard(TCard card)
+        {
+            return new ActiveCard<TCard>(card);
+        }
+
+        public ActiveCard<TCard>[] GetRemainingCards()
+        {
+            return _cards;
         }
     }
 }
