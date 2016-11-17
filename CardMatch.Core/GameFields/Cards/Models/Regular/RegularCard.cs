@@ -2,12 +2,11 @@
 
 namespace CardMatch.Core.Models.Cards.Regular
 {
-    public class RegularCard<TValue> : Card, IPairedCard<TValue>
-        where TValue : IComparable<TValue>
+    public class RegularCard : Card, IPairedCard
     {
-        public TValue Value { get; set; }
+        public override string Value { get; set; }
 
-        public bool IsPairTo(IPairedCard<TValue> other)
+        public override bool IsPairTo(IPairedCard other)
         {
             return other.Value.CompareTo(Value) == 0;
         }

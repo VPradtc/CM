@@ -1,11 +1,13 @@
 ﻿using CardMatch.Core.GameFields.CardPositions;
 using CardMatch.Core.Models;
+using CardMatch.Core.Models.Cards;
 using System;
 using System.Linq;
 
 namespace CardMatch.Core.GameFields
 {
     public class GameField<TCard, TContext>
+        where TCard: IPairedCard
     {
         public ActiveCard<TCard>[] Cards { get; private set; }
 

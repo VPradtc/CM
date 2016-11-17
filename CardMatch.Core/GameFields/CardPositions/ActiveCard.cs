@@ -1,8 +1,10 @@
-﻿using CardMatch.Core.Models.Enums;
+﻿using CardMatch.Core.Models.Cards;
+using CardMatch.Core.Models.Enums;
 
 namespace CardMatch.Core.GameFields.CardPositions
 {
     public class ActiveCard<TCard>
+        where TCard : IPairedCard
     {
         public readonly TCard Card;
 

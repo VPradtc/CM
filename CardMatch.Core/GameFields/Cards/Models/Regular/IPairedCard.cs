@@ -2,11 +2,10 @@
 
 namespace CardMatch.Core.Models.Cards
 {
-    public interface IPairedCard<TValue>
-        where TValue : IComparable<TValue>
+    public interface IPairedCard
     {
-        TValue Value { get; set; }
+        string Value { get; set; }
 
-        bool IsPairTo(IPairedCard<TValue> other);
+        bool IsPairTo(IPairedCard other);
     }
 }

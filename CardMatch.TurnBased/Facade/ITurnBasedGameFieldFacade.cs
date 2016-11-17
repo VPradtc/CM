@@ -1,11 +1,13 @@
 ﻿using CardMatch.Core.GameFields.CardPositions;
 using CardMatch.Core.Models;
+using CardMatch.Core.Models.Cards;
 using System;
 using System.Collections.Generic;
 
 namespace CardMatch.TurnBased.Facade
 {
     public interface ITurnBasedGameFieldFacade<TCard>
+        where TCard : IPairedCard
     {
         void NewGame();
 

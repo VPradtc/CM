@@ -43,6 +43,7 @@
     <Compile Include="Cards\Bonus\RemovePairs\RemovePairsBonusCardCommand.cs" />
     <Compile Include="Cards\Bonus\ExtraTurns\ExtraTurnsBonusCardCommand.cs" />
     <Compile Include="Cards\Bonus\ExtraTurns\ExtraTurnsBonusCard.cs" />
+    <Compile Include="Cards\Core\MatchCardCommand.cs" />
     <Compile Include="Facade\CardBonusEventArgs.cs" />
     <Compile Include="Facade\CardMatchEventArgs.cs" />
     <Compile Include="Facade\CardRevelationEventArgs.cs" />

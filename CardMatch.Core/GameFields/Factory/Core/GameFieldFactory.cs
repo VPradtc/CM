@@ -1,11 +1,13 @@
 ﻿using CardMatch.Core.GameFields.Factory.Cards;
 using CardMatch.Core.Models;
+using CardMatch.Core.Models.Cards;
 using System;
 using System.Collections.Generic;
 
 namespace CardMatch.Core.GameFields.Core
 {
     public abstract class GameFieldFactory<TCard, TContext> : IGameFieldFactory<TCard, TContext>
+        where TCard : IPairedCard
     {
         private readonly ICardFactory<TCard> _cardFactory;
 

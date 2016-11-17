@@ -1,6 +1,7 @@
 ﻿using CardMatch.Core.GameFields;
 using CardMatch.Core.GameFields.CardPositions;
 using CardMatch.Core.GameFields.Core;
+using CardMatch.Core.Models.Cards;
 using CardMatch.TurnBased.GameFields;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 namespace CardMatch.TurnBased.Facade
 {
     public class TurnBasedGameFieldFacade<TCard> : ITurnBasedGameFieldFacade<TCard>
+        where TCard : IPairedCard
     {
         private readonly IGameFieldFactory<TCard, TurnBasedGameState<TCard>> _gameFactory;
 
@@ -61,6 +63,8 @@ namespace CardMatch.TurnBased.Facade
         {
             return _gameField.Context.TurnsLeft;
         }
+
+        public event EventHandler CardsClosing;
 
         public event EventHandler<CardRevelationEventArgs<TCard>> OnCardRevealed;
 

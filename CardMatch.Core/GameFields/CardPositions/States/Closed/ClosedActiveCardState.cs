@@ -1,4 +1,5 @@
-﻿using CardMatch.Core.Models.Enums;
+﻿using CardMatch.Core.Models.Cards;
+using CardMatch.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace CardMatch.Core.GameFields.CardPositions.States
 {
-    public abstract class ClosedActiveCardState<TCard> : ActiveCardState<TCard>
+    public class ClosedActiveCardState<TCard> : ActiveCardState<TCard>
+        where TCard : IPairedCard
     {
         public ClosedActiveCardState(ActiveCard<TCard> owner)
             : base(owner)
