@@ -1,8 +1,9 @@
 ﻿using CardMatch.Core.GameFields.Core;
+using CardMatch.Core.GameFields.Factory.Cards;
 
 namespace CardMatch.Core.GameFields
 {
-    public class SmallGameFieldFactory : GameFieldFactory
+    public class SmallGameFieldFactory<TCard> : GameFieldFactory<TCard>
     {
         protected override int ColumnCount
         {
@@ -12,6 +13,11 @@ namespace CardMatch.Core.GameFields
         protected override int RowCount
         {
             get { return 3; }
+        }
+
+        public SmallGameFieldFactory(ICardFactory<TCard> cardFactory)
+            : base(cardFactory)
+        {
         }
     }
 }

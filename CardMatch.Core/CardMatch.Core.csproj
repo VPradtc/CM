@@ -39,13 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameFields\Core\IGameFieldFactory.cs" />
-    <Compile Include="GameFields\Core\GameFieldFactory.cs" />
-    <Compile Include="GameFields\AverageGameFieldFactory.cs" />
-    <Compile Include="GameFields\LargeGameFieldFactory.cs" />
-    <Compile Include="GameFields\SmallGameFieldFactory.cs" />
-    <Compile Include="Models\Card.cs" />
-    <Compile Include="Models\GameField.cs" />
+    <Compile Include="GameFields\Factory\Cards\ICardFactory.cs" />
+    <Compile Include="GameFields\Factory\Core\IGameFieldFactory.cs" />
+    <Compile Include="GameFields\Factory\Core\GameFieldFactory.cs" />
+    <Compile Include="GameFields\Factory\AverageGameFieldFactory.cs" />
+    <Compile Include="GameFields\Factory\LargeGameFieldFactory.cs" />
+    <Compile Include="GameFields\Factory\SmallGameFieldFactory.cs" />
+    <Compile Include="GameFields\IGameFieldContext.cs" />
+    <Compile Include="Models\Cards\Bonus\IActionCard.cs" />
+    <Compile Include="Models\Cards\Card.cs" />
+    <Compile Include="Models\Cards\Bonus\_BonusCard.cs" />
+    <Compile Include="Models\Cards\Regular\IPairedCard.cs" />
+    <Compile Include="Models\Cards\Regular\RegularCard.cs" />
+    <Compile Include="Models\Enums\CardStatus.cs" />
+    <Compile Include="GameFields\GameField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
