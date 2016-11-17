@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CardMatch.Core.GameFields.Core
 {
-    public abstract class GameFieldFactory<TCard> : IGameFieldFactory<TCard>
+    public abstract class GameFieldFactory<TCard, TContext> : IGameFieldFactory<TCard, TContext>
     {
         private readonly ICardFactory<TCard> _cardFactory;
 
@@ -22,7 +22,7 @@ namespace CardMatch.Core.GameFields.Core
             return _cardFactory.Create();
         }
 
-        public GameField<TCard> Create(int rowCount, int columnCount)
+        public GameField<TCard, TContext> Create(int rowCount, int columnCount)
         {
             var content = new TCard[rowCount, columnCount];
 
@@ -34,13 +34,13 @@ namespace CardMatch.Core.GameFields.Core
                 }
             }
 
-            var gameField = GameField<TCard>.Instance;
+            var gameField = GameField<TCard, TContext>.Instance;
             gameField.SetField(content);
 
             return gameField;
         }
 
-        public GameField<TCard> Create()
+        public GameField<TCard, TContext> Create()
         {
             return Create(RowCount, ColumnCount);
         }

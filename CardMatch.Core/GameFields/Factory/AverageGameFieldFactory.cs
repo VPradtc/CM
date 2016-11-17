@@ -3,7 +3,7 @@ using CardMatch.Core.GameFields.Factory.Cards;
 
 namespace CardMatch.Core.GameFields
 {
-    public class AverageGameFieldFactory<TCard> : GameFieldFactory<TCard>
+    public class AverageGameFieldFactory<TCard, TContext> : GameFieldFactory<TCard, TContext>
     {
         protected override int ColumnCount
         {

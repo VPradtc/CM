@@ -2,8 +2,8 @@
 
 namespace CardMatch.Core.GameFields.Core
 {
-    public interface IGameFieldFactory<TCard>
+    public interface IGameFieldFactory<TCard, TContext>
     {
-        GameField<TCard> Create();
+        GameField<TCard, TContext> Create();
     }
 }

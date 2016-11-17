@@ -2,12 +2,12 @@
 
 namespace CardMatch.Core.GameFields
 {
-    public class GameField<TCard>
+    public class GameField<TCard, TContext>
     {
         private static object __lock = new object();
-        private static GameField<TCard> __instance;
+        private static GameField<TCard, TContext> __instance;
 
-        public static GameField<TCard> Instance
+        public static GameField<TCard, TContext> Instance
         {
             get
             {
@@ -17,7 +17,7 @@ namespace CardMatch.Core.GameFields
                     {
                         if (__instance == null)
                         {
-                            __instance = new GameField<TCard>();
+                            __instance = new GameField<TCard, TContext>();
                         }
                     }
                 }
@@ -28,7 +28,7 @@ namespace CardMatch.Core.GameFields
 
         private TCard[,] _field;
 
-        public IGameFieldContext Context { get; set; }
+        public TContext Context { get; set; }
 
         protected GameField()
         {
