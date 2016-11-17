@@ -2,10 +2,10 @@
 
 namespace CardMatch.Core.Models.Cards
 {
-    public interface IPairedCard
+    public interface ICard
     {
         string Value { get; set; }
 
-        bool IsPairTo(IPairedCard other);
+        bool IsPairTo(ICard other);
     }
 }

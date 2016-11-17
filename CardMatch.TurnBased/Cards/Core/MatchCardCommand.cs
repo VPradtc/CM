@@ -7,7 +7,7 @@ using System.Linq;
 namespace CardMatch.TurnBased.Cards.Bonus
 {
     public class MatchCardCommand<TCard> : ICardCommand<RegularCard, TurnBasedGameState<TCard>>
-        where TCard: IPairedCard
+        where TCard: ICard
     {
         public void Execute(RegularCard card, TurnBasedGameState<TCard> context)
         {

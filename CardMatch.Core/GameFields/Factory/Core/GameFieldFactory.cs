@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace CardMatch.Core.GameFields.Core
 {
     public abstract class GameFieldFactory<TCard, TContext> : IGameFieldFactory<TCard, TContext>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         private readonly ICardFactory<TCard> _cardFactory;
 

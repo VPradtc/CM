@@ -5,7 +5,7 @@ using CardMatch.Core.Models.Cards;
 namespace CardMatch.Core.GameFields
 {
     public class LargeGameFieldFactory<TCard, TContext> : GameFieldFactory<TCard, TContext>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         protected override int ColumnCount
         {

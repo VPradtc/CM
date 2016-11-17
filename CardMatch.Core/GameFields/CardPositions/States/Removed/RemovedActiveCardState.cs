@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CardMatch.Core.GameFields.CardPositions.States
 {
     public class RemovedActiveCardState<TCard> : ActiveCardState<TCard>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         public RemovedActiveCardState(ActiveCard<TCard> owner)
             : base(owner)

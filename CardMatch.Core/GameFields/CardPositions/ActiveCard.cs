@@ -4,7 +4,7 @@ using CardMatch.Core.Models.Enums;
 namespace CardMatch.Core.GameFields.CardPositions
 {
     public class ActiveCard<TCard>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         public readonly TCard Card;
 

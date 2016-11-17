@@ -11,7 +11,7 @@ using CardMatch.TurnBased.Facade;
 namespace CardMatch.TurnBased.GameFields
 {
     public class TurnBasedGameState<TCard>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         private GameField<TCard, TurnBasedGameState<TCard>> _gameField;
 

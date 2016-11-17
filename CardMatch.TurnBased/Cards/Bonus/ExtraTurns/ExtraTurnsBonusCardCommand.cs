@@ -5,7 +5,7 @@ using CardMatch.TurnBased.GameFields;
 namespace CardMatch.TurnBased.Cards.Bonus
 {
     public class ExtraTurnsBonusCardCommand<TCard> : ICardCommand<ExtraTurnsBonusCard, TurnBasedGameState<TCard>>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         public void Execute(ExtraTurnsBonusCard card, TurnBasedGameState<TCard> context)
         {

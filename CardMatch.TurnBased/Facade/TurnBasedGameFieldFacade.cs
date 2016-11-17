@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace CardMatch.TurnBased.Facade
 {
     public class TurnBasedGameFieldFacade<TCard> : ITurnBasedGameFieldFacade<TCard>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         private readonly IGameFieldFactory<TCard, TurnBasedGameState<TCard>> _gameFactory;
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CardMatch.Core.GameFields.CardPositions.States
 {
     public abstract class ActiveCardState<TCard> : IActiveCardState
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         protected readonly ActiveCard<TCard> _owner;
 

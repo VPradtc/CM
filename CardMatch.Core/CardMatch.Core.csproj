@@ -52,7 +52,7 @@
     <Compile Include="GameFields\Factory\LargeGameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\SmallGameFieldFactory.cs" />
     <Compile Include="GameFields\Cards\Models\Bonus\_BonusCard.cs" />
-    <Compile Include="GameFields\Cards\Models\Regular\IPairedCard.cs" />
+    <Compile Include="GameFields\Cards\Models\Regular\ICard.cs" />
     <Compile Include="GameFields\Cards\Models\Regular\RegularCard.cs" />
     <Compile Include="GameFields\Cards\Models\Enums\CardStatus.cs" />
     <Compile Include="GameFields\GameField.cs" />

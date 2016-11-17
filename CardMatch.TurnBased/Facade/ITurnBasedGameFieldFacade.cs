@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace CardMatch.TurnBased.Facade
 {
     public interface ITurnBasedGameFieldFacade<TCard>
-        where TCard : IPairedCard
+        where TCard : ICard
     {
         void NewGame();
 

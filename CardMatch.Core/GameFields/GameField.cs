@@ -7,7 +7,7 @@ using System.Linq;
 namespace CardMatch.Core.GameFields
 {
     public class GameField<TCard, TContext>
-        where TCard: IPairedCard
+        where TCard: ICard
     {
         public ActiveCard<TCard>[] Cards { get; private set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace CardMatch.Core.Models.Cards
 {
-    public abstract class BonusCard : IPairedCard
+    public abstract class BonusCard : ICard
     {
         public string Value
         {
@@ -15,7 +15,7 @@
 
         public abstract string Name { get; }
 
-        public bool IsPairTo(IPairedCard other)
+        public bool IsPairTo(ICard other)
         {
             return false;
         }
