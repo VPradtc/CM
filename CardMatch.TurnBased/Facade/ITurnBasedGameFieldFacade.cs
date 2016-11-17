@@ -16,7 +16,7 @@ namespace CardMatch.TurnBased.Facade
 
         int GetRemainingTurns();
 
-        event EventHandler CardsClosing;
+        event EventHandler<EventArgs> CardsClosing;
         event EventHandler<CardRevelationEventArgs<TCard>> OnCardRevealed;
         event EventHandler<CardMatchEventArgs<TCard>> OnCardMatched;
         event EventHandler<CardBonusEventArgs> OnBonusApplied;

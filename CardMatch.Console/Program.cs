@@ -17,6 +17,17 @@ namespace CardMatch.ConsoleApp
 
         static void Main(string[] args)
         {
+            Init();
+            RunTest();
+        }
+
+        private static void RunTest()
+        {
+            _gameFacade.NewGame();
+        }
+
+        private static void Init()
+        {
             _gameFacade = (ITurnBasedGameFieldFacade<ICard>)kernel.Get<ITurnBasedGameFieldFacade<ICard>>();
 
             _gameFacade.CardsClosing += _gameFacade_CardsClosing;

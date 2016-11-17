@@ -36,7 +36,7 @@ namespace CardMatch.TurnBased.Facade
 
                 return __instance;
             }
-        } 
+        }
         #endregion
 
         public TurnBasedGameFieldFacade(IGameFieldFactory<TCard, TurnBasedGameState<TCard>> gameFactory)
@@ -46,7 +46,23 @@ namespace CardMatch.TurnBased.Facade
 
         public void NewGame()
         {
+            _gameField.Context.OnCardMatched -= Context_OnCardMatched;
+            _gameField.Context.OnCardsClosed -= Context_OnCardsClosed;
+
             _gameField = _gameFactory.Create();
+
+            _gameField.Context.OnCardMatched += Context_OnCardMatched;
+            _gameField.Context.OnCardsClosed += Context_OnCardsClosed;
+        }
+
+        void Context_OnCardsClosed(object sender, EventArgs e)
+        {
+            SafeInvoke(CardsClosing, e);
+        }
+
+        void Context_OnCardMatched(object sender, CardMatchEventArgs<TCard> e)
+        {
+            SafeInvoke(OnCardMatched, e);
         }
 
         public ICollection<ActiveCard<TCard>> GetRemainingCards()
@@ -56,7 +72,20 @@ namespace CardMatch.TurnBased.Facade
 
         public void PickCard(ActiveCard<TCard> card)
         {
+            var oldStatus = card.Status;
+
             _gameField.PickCard(card);
+
+            var newStatus = card.Status;
+
+            if(oldStatus == Core.Models.Enums.CardStatus.Closed &&
+                newStatus == Core.Models.Enums.CardStatus.Revealed)
+            {
+                SafeInvoke(OnCardRevealed, new CardRevelationEventArgs<TCard>()
+                {
+                    Card = card.Card
+                });
+            }
         }
 
         public int GetRemainingTurns()
@@ -64,12 +93,20 @@ namespace CardMatch.TurnBased.Facade
             return _gameField.Context.TurnsLeft;
         }
 
-        public event EventHandler CardsClosing;
+        public event EventHandler<EventArgs> CardsClosing;
 
         public event EventHandler<CardRevelationEventArgs<TCard>> OnCardRevealed;
 
         public event EventHandler<CardMatchEventArgs<TCard>> OnCardMatched;
 
         public event EventHandler<CardBonusEventArgs> OnBonusApplied;
+
+        private void SafeInvoke<T>(EventHandler<T> targetEvent, T eventArgs)
+        {
+            if (targetEvent != null)
+            {
+                targetEvent.Invoke(this, eventArgs);
+            }
+        }
     }
 }
