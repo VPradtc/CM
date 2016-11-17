@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardMatch.Core", "CardMatch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardMatch.TurnBased", "CardMatch.TurnBased\CardMatch.TurnBased.csproj", "{4969D111-500C-4ECC-B85B-25817D0AE9FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardMatch.Console", "CardMatch.Console\CardMatch.Console.csproj", "{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4969D111-500C-4ECC-B85B-25817D0AE9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4969D111-500C-4ECC-B85B-25817D0AE9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4969D111-500C-4ECC-B85B-25817D0AE9FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
