@@ -30,10 +30,6 @@ namespace CardMatch.Core.GameFields
 
         public TContext Context { get; set; }
 
-        protected GameField()
-        {
-        }
-
         public void SetField(TCard[,] field)
         {
             _field = field;
