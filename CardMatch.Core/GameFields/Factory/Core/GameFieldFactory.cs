@@ -1,33 +1,30 @@
 ﻿using CardMatch.Core.GameFields.Factory.Cards;
-using CardMatch.Core.Models;
 using CardMatch.Core.Models.Cards;
-using System;
 using System.Collections.Generic;
 
 namespace CardMatch.Core.GameFields.Core
 {
-    public abstract class GameFieldFactory<TCard, TContext> : IGameFieldFactory<TCard, TContext>
-        where TCard : ICard
+    public abstract class GameFieldFactory : IGameFieldFactory
     {
-        private readonly ICardFactory<TCard> _cardFactory;
+        private readonly ICardFactory _cardFactory;
 
         protected abstract int ColumnCount { get; }
         protected abstract int RowCount { get; }
 
-        public GameFieldFactory(ICardFactory<TCard> cardFactory)
+        public GameFieldFactory(ICardFactory cardFactory)
         {
             _cardFactory = cardFactory;
         }
 
-        protected virtual TCard CreateCard(int rowIndex, int columnIndex)
+        protected virtual ICard CreateCard(int rowIndex, int columnIndex)
         {
             return _cardFactory.Create();
         }
 
-        public GameField<TCard, TContext> Create(int rowCount, int columnCount)
+        public GameField Create(int rowCount, int columnCount)
         {
             var cardCount = rowCount * columnCount;
-            var content = new List<TCard>();
+            var content = new List<ICard>();
 
             for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
             {
@@ -37,13 +34,13 @@ namespace CardMatch.Core.GameFields.Core
                 }
             }
 
-            var gameField = new GameField<TCard, TContext>();
+            var gameField = new GameField();
             gameField.SetCards(content.ToArray());
 
             return gameField;
         }
 
-        public GameField<TCard, TContext> Create()
+        public GameField Create()
         {
             return Create(RowCount, ColumnCount);
         }

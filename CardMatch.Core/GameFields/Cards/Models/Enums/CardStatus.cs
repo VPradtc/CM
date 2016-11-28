@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CardMatch.Core.Models.Enums
+﻿namespace CardMatch.Core.Models.Enums
 {
     public enum CardStatus
     {

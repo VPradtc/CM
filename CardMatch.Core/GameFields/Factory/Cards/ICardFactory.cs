@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CardMatch.Core.Models.Cards;
 
 namespace CardMatch.Core.GameFields.Factory.Cards
 {
-    public interface ICardFactory<TCard>
+    public interface ICardFactory
     {
-        TCard Create();
+        ICard Create();
     }
 }

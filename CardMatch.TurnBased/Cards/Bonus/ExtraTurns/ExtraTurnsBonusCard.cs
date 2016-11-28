@@ -1,11 +1,11 @@
-﻿using CardMatch.Core.Models.Cards;
-using CardMatch.TurnBased.GameFields;
+﻿using CardMatch.Core.GameFields;
+using CardMatch.Core.Models.Cards;
 
 namespace CardMatch.TurnBased.Cards.Bonus
 {
     public class ExtraTurnsBonusCard : BonusCard
     {
-        public override string Name
+        public override string Value
         {
             get
             {
@@ -14,5 +14,10 @@ namespace CardMatch.TurnBased.Cards.Bonus
         }
 
         public int TurnCount { get; set; }
+
+        public override void Execute(GameField context)
+        {
+            context.TurnsLeft += TurnCount;
+        }
     }
 }

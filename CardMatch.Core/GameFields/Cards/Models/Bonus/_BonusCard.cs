@@ -1,23 +1,21 @@
-﻿namespace CardMatch.Core.Models.Cards
+﻿using System;
+using CardMatch.Core.GameFields;
+using CardMatch.Core.Models.Enums;
+
+namespace CardMatch.Core.Models.Cards
 {
     public abstract class BonusCard : ICard
     {
-        public string Value
-        {
-            get
-            {
-                return Name;
-            }
-            set
-            {
-            }
-        }
+        public abstract string Value { get; }
 
-        public abstract string Name { get; }
+        public CardStatus Status { get; set; }
+
+        public abstract void Execute(GameField context);
 
         public bool IsPairTo(ICard other)
         {
             return false;
         }
+
     }
 }

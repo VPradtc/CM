@@ -1,11 +1,14 @@
-﻿using CardMatch.Core.Models.Cards;
-using CardMatch.TurnBased.GameFields;
+﻿using System;
+using CardMatch.Core.GameFields;
+using CardMatch.Core.Models.Cards;
 
 namespace CardMatch.TurnBased.Cards.Bonus
 {
     public class RemovePairsBonusCard : BonusCard
     {
-        public override string Name
+        public int PairCount { get; set; }
+
+        public override string Value
         {
             get
             {
@@ -13,6 +16,9 @@ namespace CardMatch.TurnBased.Cards.Bonus
             }
         }
 
-        public int PairCount { get; set; }
+        public override void Execute(GameField context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

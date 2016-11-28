@@ -39,13 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameFields\CardPositions\ActiveCard.cs" />
-    <Compile Include="GameFields\CardPositions\States\Open\OpenActiveCardState.cs" />
-    <Compile Include="GameFields\CardPositions\States\Removed\RemovedActiveCardState.cs" />
-    <Compile Include="GameFields\CardPositions\States\Core\ActiveCardState.cs" />
-    <Compile Include="GameFields\CardPositions\States\Core\IActiveCardState.cs" />
-    <Compile Include="GameFields\CardPositions\States\Closed\ClosedActiveCardState.cs" />
-    <Compile Include="GameFields\Cards\Commands\ICardCommand.cs" />
     <Compile Include="GameFields\Factory\Cards\ICardFactory.cs" />
     <Compile Include="GameFields\Factory\Core\IGameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\Core\GameFieldFactory.cs" />

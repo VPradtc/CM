@@ -1,43 +1,69 @@
-﻿using CardMatch.Core.GameFields.CardPositions;
-using CardMatch.Core.Models;
-using CardMatch.Core.Models.Cards;
+﻿using CardMatch.Core.Models.Cards;
+using CardMatch.Core.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CardMatch.Core.GameFields
 {
-    public class GameField<TCard, TContext>
-        where TCard: ICard
+    public class GameField
     {
-        public ActiveCard<TCard>[] Cards { get; private set; }
+        public int TurnsLeft { get; set; }
 
-        public TContext Context { get; set; }
+        public ICard[] Cards { get; private set; }
 
-        public void SetCards(TCard[] cards)
+        public void SetCards(ICard[] cards)
         {
-            Cards = cards.Select(card => CreateActiveCard(card)).ToArray();
+            Cards = cards;
         }
 
-        private ActiveCard<TCard> CreateActiveCard(TCard card)
-        {
-            return new ActiveCard<TCard>(card);
-        }
-
-        public ActiveCard<TCard>[] GetRemainingCards()
+        public ICard[] GetRemainingCards()
         {
             return Cards;
         }
 
-        public ActiveCard<TCard> PickCard(ActiveCard<TCard> target)
+        public void PickCard(ICard target)
         {
             if (!Cards.Contains(target))
             {
                 throw new InvalidOperationException();
             }
+        }
 
-            target.State.Trigger();
+        public ICard[] GetActiveCards()
+        {
+            return Cards.Where(card => card.Status != CardStatus.Removed).ToArray();
+        }
 
-            return target;
+        public ICard[] GetRevealedCards()
+        {
+            var activeCards = GetActiveCards();
+            var revealedCards = activeCards.Where(card => card.Status == CardStatus.Revealed);
+
+            return revealedCards.ToArray();
+        }
+
+        public void CloseRevealedCards()
+        {
+            var cards = GetRevealedCards();
+
+            foreach (var card in cards)
+            {
+                card.Status = CardStatus.Closed;
+            }
+        }
+
+        public void CreateMatch(List<ICard> pairedCards)
+        {
+            foreach (var card in pairedCards)
+            {
+                if (!Cards.Contains(card))
+                {
+                    throw new InvalidOperationException();
+                }
+
+                card.Status = CardStatus.Removed;
+            }
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using CardMatch.Core.GameFields.Core;
 using CardMatch.Core.GameFields.Factory.Cards;
-using CardMatch.Core.Models.Cards;
 
 namespace CardMatch.Core.GameFields
 {
-    public class AverageGameFieldFactory<TCard, TContext> : GameFieldFactory<TCard, TContext>
-        where TCard : ICard
+    public class AverageGameFieldFactory : GameFieldFactory
     {
         protected override int ColumnCount
         {
@@ -17,7 +15,7 @@ namespace CardMatch.Core.GameFields
             get { return 5; }
         }
 
-        public AverageGameFieldFactory(ICardFactory<TCard> cardFactory)
+        public AverageGameFieldFactory(ICardFactory cardFactory)
             : base(cardFactory)
         {
         }
