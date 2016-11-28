@@ -4,6 +4,6 @@ namespace CardMatch.Core.GameFields.Factory.Cards
 {
     public interface ICardFactory
     {
-        ICard Create();
+        ICard[] Create(int cardCount);
     }
 }

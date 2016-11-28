@@ -1,9 +1,8 @@
-﻿using System;
-using CardMatch.Core.GameFields;
+﻿using CardMatch.Core.GameFields;
 using CardMatch.Core.Models.Cards;
 using System.Linq;
 
-namespace CardMatch.TurnBased.Cards.Bonus
+namespace CardMatch.Core.Cards.Bonus
 {
     public class RemovePairsBonusCard : BonusCard
     {
@@ -23,6 +22,14 @@ namespace CardMatch.TurnBased.Cards.Bonus
             {
                 RemovePair(context);
             }
+        }
+
+        protected override ICard CloneOwnProperties()
+        {
+            return new RemovePairsBonusCard()
+            {
+                PairCount = PairCount,
+            };
         }
 
         private void RemovePair(GameField context)

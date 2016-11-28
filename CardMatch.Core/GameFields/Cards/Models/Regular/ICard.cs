@@ -12,5 +12,7 @@ namespace CardMatch.Core.Models.Cards
         bool IsPairTo(ICard other);
 
         void Execute(GameField context);
+
+        ICard Clone();
     }
 }

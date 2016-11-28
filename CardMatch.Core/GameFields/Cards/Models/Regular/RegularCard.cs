@@ -37,5 +37,14 @@ namespace CardMatch.Core.Models.Cards.Regular
 
             context.CreateMatch(pair);
         }
+
+        public ICard Clone()
+        {
+            return new RegularCard()
+            {
+                Status = Status,
+                Value = Value,
+            };
+        }
     }
 }

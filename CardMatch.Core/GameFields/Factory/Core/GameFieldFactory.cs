@@ -16,23 +16,14 @@ namespace CardMatch.Core.GameFields.Core
             _cardFactory = cardFactory;
         }
 
-        protected virtual ICard CreateCard(int rowIndex, int columnIndex)
-        {
-            return _cardFactory.Create();
-        }
-
         public GameField Create(int rowCount, int columnCount)
         {
             var cardCount = rowCount * columnCount;
             var content = new List<ICard>();
 
-            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
-            {
-                for (int columnIndex = 0; columnIndex < columnCount; columnIndex++)
-                {
-                    content.Add(CreateCard(rowIndex, columnIndex));
-                }
-            }
+            var cards = _cardFactory.Create(cardCount);
+
+            content.AddRange(cards);
 
             var gameField = new GameField();
             gameField.SetCards(content.ToArray());

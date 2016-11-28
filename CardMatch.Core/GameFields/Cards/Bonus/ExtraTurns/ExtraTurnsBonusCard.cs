@@ -1,7 +1,7 @@
 ﻿using CardMatch.Core.GameFields;
 using CardMatch.Core.Models.Cards;
 
-namespace CardMatch.TurnBased.Cards.Bonus
+namespace CardMatch.Core.Cards.Bonus
 {
     public class ExtraTurnsBonusCard : BonusCard
     {
@@ -18,6 +18,14 @@ namespace CardMatch.TurnBased.Cards.Bonus
         public override void Execute(GameField context)
         {
             context.TurnsLeft += TurnCount;
+        }
+
+        protected override ICard CloneOwnProperties()
+        {
+            return new ExtraTurnsBonusCard()
+            {
+                TurnCount = TurnCount,
+            };
         }
     }
 }

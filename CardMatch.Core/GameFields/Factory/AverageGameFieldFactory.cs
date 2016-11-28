@@ -7,7 +7,7 @@ namespace CardMatch.Core.GameFields
     {
         protected override int ColumnCount
         {
-            get { return 7; }
+            get { return 8; }
         }
 
         protected override int RowCount

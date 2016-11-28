@@ -17,5 +17,15 @@ namespace CardMatch.Core.Models.Cards
             return false;
         }
 
+        public ICard Clone()
+        {
+            var clone = this.CloneOwnProperties();
+
+            clone.Status = Status;
+
+            return clone;
+        }
+
+        protected abstract ICard CloneOwnProperties();
     }
 }

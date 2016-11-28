@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\Bonus\RemovePairs\RemovePairsBonusCard.cs" />
-    <Compile Include="Cards\Bonus\ExtraTurns\ExtraTurnsBonusCard.cs" />
     <Compile Include="Facade\ITurnBasedGameFieldFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
