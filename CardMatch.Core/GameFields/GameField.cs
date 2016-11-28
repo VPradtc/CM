@@ -28,11 +28,39 @@ namespace CardMatch.Core.GameFields
             {
                 throw new InvalidOperationException();
             }
+
+            target.Execute(this);
         }
 
         public ICard[] GetActiveCards()
         {
             return Cards.Where(card => card.Status != CardStatus.Removed).ToArray();
+        }
+
+        public Tuple<ICard, ICard>[] GetPairs()
+        {
+            var cards = GetActiveCards();
+
+            var pairs = new List<Tuple<ICard, ICard>>();
+
+            foreach (var card in cards)
+            {
+                if (pairs.Any(pair => pair.Item1 == card || card == pair.Item2))
+                {
+                    continue;
+                }
+
+                var pairedCard = cards.FirstOrDefault(pairCard => pairCard != card && card.IsPairTo(pairCard));
+                if (pairedCard == null)
+                {
+                    continue;
+                }
+
+                var newPair = new Tuple<ICard, ICard>(card, pairedCard);
+                pairs.Add(newPair);
+            }
+
+            return pairs.ToArray();
         }
 
         public ICard[] GetRevealedCards()
@@ -53,9 +81,9 @@ namespace CardMatch.Core.GameFields
             }
         }
 
-        public void CreateMatch(List<ICard> pairedCards)
+        public void CreateMatch(Tuple<ICard, ICard> pairedCards)
         {
-            foreach (var card in pairedCards)
+            foreach (var card in new[] { pairedCards.Item1, pairedCards.Item2 })
             {
                 if (!Cards.Contains(card))
                 {

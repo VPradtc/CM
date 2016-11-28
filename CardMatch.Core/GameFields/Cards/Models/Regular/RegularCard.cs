@@ -1,6 +1,7 @@
 ﻿using CardMatch.Core.GameFields;
 using CardMatch.Core.Models.Enums;
 using System.Linq;
+using System;
 
 namespace CardMatch.Core.Models.Cards.Regular
 {
@@ -27,7 +28,14 @@ namespace CardMatch.Core.Models.Cards.Regular
                 return;
             }
 
-            context.CreateMatch(pairedCards);
+            if (pairedCards.Count > 2)
+            {
+                throw new ArgumentException("Invalid gamefield configuration.");
+            }
+
+            var pair = new Tuple<ICard, ICard>(pairedCards.First(), pairedCards.Last());
+
+            context.CreateMatch(pair);
         }
     }
 }
