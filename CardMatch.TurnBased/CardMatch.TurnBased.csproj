@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Facade\ITurnBasedGameFieldFacade.cs" />
+    <Compile Include="Facade\TurnBasedGameFieldFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
