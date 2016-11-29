@@ -12,5 +12,7 @@ namespace CardMatch.TurnBased.Facade
         void PickCard(ICard card);
 
         int GetRemainingTurns();
+
+        bool IsOver();
     }
 }

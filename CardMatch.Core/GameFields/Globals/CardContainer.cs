@@ -8,12 +8,37 @@ using CardMatch.Core.Cards.Bonus;
 
 namespace CardMatch.Core.GameFields.Globals
 {
-    //singleton
     public class CardContainer : ICardContainer
     {
+        #region Singleton
+
+        private static CardContainer __instance;
+        private static object __lock = new object();
+
+        public static CardContainer Instance
+        {
+            get
+            {
+                if (__instance == null)
+                {
+                    lock (__lock)
+                    {
+                        if (__instance == null)
+                        {
+                            __instance = new CardContainer();
+                        }
+                    }
+                }
+
+                return __instance;
+            }
+        }
+
+        #endregion
+
         private readonly IEnumerable<CardBinding> _bindings;
 
-        public CardContainer()
+        protected CardContainer()
         {
             var regularBindings = CreateRegularBindings();
             var bonusBindings = CreateBonusBindings();

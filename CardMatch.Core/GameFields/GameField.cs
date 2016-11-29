@@ -12,14 +12,17 @@ namespace CardMatch.Core.GameFields
 
         public ICard[] Cards { get; private set; }
 
+        public ICard[] ActiveCards
+        {
+            get
+            {
+                return Cards.Where(card => card.Status != CardStatus.Removed).ToArray();
+            }
+        }
+
         public void SetCards(ICard[] cards)
         {
             Cards = cards;
-        }
-
-        public ICard[] GetRemainingCards()
-        {
-            return Cards;
         }
 
         public void PickCard(ICard target)
@@ -32,14 +35,9 @@ namespace CardMatch.Core.GameFields
             target.Execute(this);
         }
 
-        public ICard[] GetActiveCards()
-        {
-            return Cards.Where(card => card.Status != CardStatus.Removed).ToArray();
-        }
-
         public Tuple<ICard, ICard>[] GetPairs()
         {
-            var cards = GetActiveCards();
+            var cards = ActiveCards;
 
             var pairs = new List<Tuple<ICard, ICard>>();
 
@@ -65,7 +63,7 @@ namespace CardMatch.Core.GameFields
 
         public ICard[] GetRevealedCards()
         {
-            var activeCards = GetActiveCards();
+            var activeCards = ActiveCards;
             var revealedCards = activeCards.Where(card => card.Status == CardStatus.Revealed);
 
             return revealedCards.ToArray();
