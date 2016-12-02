@@ -3,6 +3,7 @@ using CardMatch.Core.Models.Cards;
 using CardMatch.Core.GameFields.Globals;
 using System.Linq;
 using System.Collections.Generic;
+using CardMatch.Core.Utils;
 
 namespace CardMatch.Core.GameFields.Factory.Cards
 {
@@ -28,7 +29,7 @@ namespace CardMatch.Core.GameFields.Factory.Cards
 
             var pairs = Enumerable.Range(0, pairCount).Select(index => CreatePair(index, identifiers));
 
-            var cards = pairs.SelectMany(pair => new List<ICard> { pair.Item1, pair.Item2 }).ToArray();
+            var cards = pairs.SelectMany(pair => new List<ICard> { pair.Item1, pair.Item2 }).ToList().Shuffle().ToArray();
 
             return cards;
         }

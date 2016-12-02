@@ -63,8 +63,16 @@ namespace CardMatch.Core.GameFields.Globals
         {
             return new List<CardBinding>
             {
-                new CardBinding() { Identifier = "ExtraTurns", Card = new ExtraTurnsBonusCard() },
-                new CardBinding() { Identifier = "RemovePairs", Card = new RemovePairsBonusCard() },
+                new CardBinding()
+                {
+                    Identifier = "ExtraTurns",
+                    Card = new ExtraTurnsBonusCard(){ TurnCount = 5 },
+                },
+                new CardBinding()
+                {
+                    Identifier = "RemovePairs",
+                    Card = new RemovePairsBonusCard(){ PairCount = 1 },
+                },
             };
         }
 

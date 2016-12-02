@@ -3,6 +3,7 @@ using CardMatch.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CardMatch.Core.Utils;
 
 namespace CardMatch.Core.GameFields
 {
@@ -32,6 +33,7 @@ namespace CardMatch.Core.GameFields
                 throw new InvalidOperationException();
             }
 
+            RevealCard(target);
             target.Execute(this);
 
             TurnsLeft--;
@@ -79,6 +81,7 @@ namespace CardMatch.Core.GameFields
             {
                 card.Status = CardStatus.Closed;
             }
+            GameFieldChanged.SafeInvoke(this, new EventArgs());
         }
 
         public void CreateMatch(Tuple<ICard, ICard> pairedCards)
@@ -92,6 +95,32 @@ namespace CardMatch.Core.GameFields
 
                 card.Status = CardStatus.Removed;
             }
+            GameFieldChanged.SafeInvoke(this, new EventArgs());
+        }
+
+        public void RevealCard(ICard card)
+        {
+            if (card.Status == CardStatus.Revealed)
+            {
+                return;
+            }
+
+            var revealedCards = GetRevealedCards();
+            if (revealedCards.Count() == 2)
+            {
+                CloseRevealedCards();
+            }
+
+            card.Status = CardStatus.Revealed;
+            GameFieldChanged.SafeInvoke(this, new EventArgs());
+        }
+
+        public event EventHandler GameFieldChanged;
+
+        public void RemoveCard(ICard card)
+        {
+            card.Status = CardStatus.Removed;
+            GameFieldChanged.SafeInvoke(this, new EventArgs());
         }
     }
 }

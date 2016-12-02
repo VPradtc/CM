@@ -18,8 +18,6 @@ namespace CardMatch.Core.Models.Cards.Regular
 
         public void Execute(GameField context)
         {
-            Status = CardStatus.Revealed;
-
             var revealedCards = context.GetRevealedCards();
 
             if (revealedCards.Count() <= 1)
@@ -31,7 +29,6 @@ namespace CardMatch.Core.Models.Cards.Regular
 
             if (pairedCards.Count <= 1)
             {
-                context.CloseRevealedCards();
                 return;
             }
 

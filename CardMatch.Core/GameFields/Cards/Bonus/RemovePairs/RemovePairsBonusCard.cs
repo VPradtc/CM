@@ -22,6 +22,8 @@ namespace CardMatch.Core.Cards.Bonus
             {
                 RemovePair(context);
             }
+
+            context.RemoveCard(this);
         }
 
         protected override ICard CloneOwnProperties()

@@ -18,6 +18,7 @@ namespace CardMatch.Core.Cards.Bonus
         public override void Execute(GameField context)
         {
             context.TurnsLeft += TurnCount;
+            context.RemoveCard(this);
         }
 
         protected override ICard CloneOwnProperties()

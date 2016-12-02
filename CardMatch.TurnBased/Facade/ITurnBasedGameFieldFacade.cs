@@ -14,5 +14,9 @@ namespace CardMatch.TurnBased.Facade
         int GetRemainingTurns();
 
         bool IsOver();
+        bool IsDefeat();
+        bool IsVictory();
+
+        event EventHandler GameFieldChanged;
     }
 }

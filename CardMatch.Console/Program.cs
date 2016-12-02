@@ -25,25 +25,32 @@ namespace CardMatch.ConsoleApp
         {
             _gameFacade.NewGame();
 
+            RenderGameState();
+
             while (!_gameFacade.IsOver())
             {
-                PollGameState();
-                DisplayGameState();
                 RequestUserAction();
             }
+
+            var endGameMessage = _gameFacade.IsVictory() ? "Congrats, you won!" : "Sorry, you lost.";
+
+            System.Console.WriteLine(endGameMessage);
+
+            System.Console.ReadLine();
         }
 
         private static void RequestUserAction()
         {
             int cardIndex;
             string input = System.Console.ReadLine();
-            if (!int.TryParse(input, out cardIndex))
+            if (!int.TryParse(input, out cardIndex) || cardIndex < 1 || cardIndex > _viewmodel.Cards.Count)
             {
                 System.Console.WriteLine("Invalid card index. Try again:");
                 RequestUserAction();
+                return;
             }
 
-            var targetCard = _viewmodel.Cards[cardIndex];
+            var targetCard = _viewmodel.Cards[cardIndex - 1];
 
             _gameFacade.PickCard(targetCard);
         }
@@ -54,9 +61,9 @@ namespace CardMatch.ConsoleApp
 
             foreach (var card in _viewmodel.Cards)
             {
-                var cardChar = card.Status == CardStatus.Revealed ? card.Value : "#";
+                var cardChar = card.Status == CardStatus.Revealed ? card.Value : "####";
 
-                System.Console.Write(cardChar);
+                System.Console.Write("{0}    ",cardChar);
             }
 
             System.Console.WriteLine();
@@ -71,6 +78,18 @@ namespace CardMatch.ConsoleApp
         private static void Init()
         {
             _gameFacade = (ITurnBasedGameFieldFacade)kernel.Get<ITurnBasedGameFieldFacade>();
+            _gameFacade.GameFieldChanged += _gameFacade_GameFieldChanged;
+        }
+
+        static void _gameFacade_GameFieldChanged(object sender, EventArgs e)
+        {
+            RenderGameState();
+        }
+
+        private static void RenderGameState()
+        {
+            PollGameState();
+            DisplayGameState();
         }
     }
 }
