@@ -13,7 +13,7 @@ namespace CardMatch.ConsoleApp
         {
             Kernel.Bind<IGameFieldFactory>().To<SmallGameFieldFactory>();
             Kernel.Bind<ICardFactory>().To<CardFactory>();
-            Kernel.Bind<ICardContainer>().To<CardContainer>();
+            Kernel.Bind<ICardContainer>().ToMethod(ctx => CardContainer.Instance);
             Kernel.Bind<GameField>().ToSelf();
             Kernel.Bind<ITurnBasedGameFieldFacade>().To<TurnBasedGameFieldFacade>();
         }

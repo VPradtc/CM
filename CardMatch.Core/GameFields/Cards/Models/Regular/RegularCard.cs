@@ -18,7 +18,14 @@ namespace CardMatch.Core.Models.Cards.Regular
 
         public void Execute(GameField context)
         {
+            Status = CardStatus.Revealed;
+
             var revealedCards = context.GetRevealedCards();
+
+            if (revealedCards.Count() <= 1)
+            {
+                return;
+            }
 
             var pairedCards = revealedCards.Where(revealedCard => this.IsPairTo(revealedCard)).ToList();
 

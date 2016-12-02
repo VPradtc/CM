@@ -11,6 +11,14 @@ namespace CardMatch.Core.GameFields.Core
         protected abstract int ColumnCount { get; }
         protected abstract int RowCount { get; }
 
+        protected virtual int TurnCount
+        {
+            get
+            {
+                return 20;
+            }
+        }
+
         public GameFieldFactory(ICardFactory cardFactory)
         {
             _cardFactory = cardFactory;
@@ -25,7 +33,10 @@ namespace CardMatch.Core.GameFields.Core
 
             content.AddRange(cards);
 
-            var gameField = new GameField();
+            var gameField = new GameField()
+            {
+                TurnsLeft = TurnCount,
+            };
             gameField.SetCards(content.ToArray());
 
             return gameField;

@@ -17,7 +17,7 @@ namespace CardMatch.Core.GameFields.Factory.Cards
 
         public ICard[] Create(int cardCount)
         {
-            if(cardCount % 2 == 0)
+            if(cardCount % 2 != 0)
             {
                 throw new ArgumentException("cardCount must be an even value");
             }

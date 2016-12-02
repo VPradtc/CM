@@ -33,6 +33,8 @@ namespace CardMatch.Core.GameFields
             }
 
             target.Execute(this);
+
+            TurnsLeft--;
         }
 
         public Tuple<ICard, ICard>[] GetPairs()
