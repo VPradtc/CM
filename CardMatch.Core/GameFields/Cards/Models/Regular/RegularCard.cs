@@ -2,6 +2,7 @@
 using CardMatch.Core.Models.Enums;
 using System.Linq;
 using System;
+using CardMatch.Core.GameFields.Snapshot;
 
 namespace CardMatch.Core.Models.Cards.Regular
 {
@@ -45,6 +46,15 @@ namespace CardMatch.Core.Models.Cards.Regular
         public ICard Clone()
         {
             return new RegularCard()
+            {
+                Status = Status,
+                Value = Value,
+            };
+        }
+
+        public CardSnapshot CreateSnapshot()
+        {
+            return new CardSnapshot
             {
                 Status = Status,
                 Value = Value,

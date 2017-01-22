@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardMatch.Core.Utils;
+using CardMatch.Core.GameFields.Snapshot;
 
 namespace CardMatch.Core.GameFields
 {
@@ -121,6 +122,15 @@ namespace CardMatch.Core.GameFields
         {
             card.Status = CardStatus.Removed;
             GameFieldChanged.SafeInvoke(this, new EventArgs());
+        }
+
+        public GameFieldSnapshot CreateSnapshot()
+        {
+            return new GameFieldSnapshot
+            {
+                Cards = Cards.Select(c => c.CreateSnapshot()).ToList(),
+                TurnsLeft = TurnsLeft,
+            };
         }
     }
 }

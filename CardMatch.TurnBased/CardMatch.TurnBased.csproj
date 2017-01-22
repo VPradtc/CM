@@ -43,7 +43,6 @@
     <Compile Include="Facade\TurnBasedGameFieldFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CardMatch.Core\CardMatch.Core.csproj">
       <Project>{1ef4d654-46b0-44d1-90bc-59edaf6fca78}</Project>

@@ -1,4 +1,5 @@
 ﻿using CardMatch.Core.GameFields;
+using CardMatch.Core.GameFields.Snapshot;
 using CardMatch.Core.Models.Enums;
 
 namespace CardMatch.Core.Models.Cards
@@ -14,5 +15,7 @@ namespace CardMatch.Core.Models.Cards
         void Execute(GameField context);
 
         ICard Clone();
+
+        CardSnapshot CreateSnapshot();
     }
 }
