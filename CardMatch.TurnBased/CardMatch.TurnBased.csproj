@@ -48,6 +48,10 @@
       <Project>{1ef4d654-46b0-44d1-90bc-59edaf6fca78}</Project>
       <Name>CardMatch.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CardMatch.Serialization\CardMatch.Serialization.csproj">
+      <Project>{c5b2bc12-ec8f-48e3-b4f9-0d0e9a11b4b7}</Project>
+      <Name>CardMatch.Serialization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

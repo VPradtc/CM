@@ -17,6 +17,8 @@ namespace CardMatch.TurnBased.Facade
         bool IsDefeat();
         bool IsVictory();
 
+        void Save();
+
         event EventHandler GameFieldChanged;
     }
 }

@@ -30,6 +30,7 @@ namespace CardMatch.ConsoleApp
             while (!_gameFacade.IsOver())
             {
                 RequestUserAction();
+                _gameFacade.Save();
             }
 
             var endGameMessage = _gameFacade.IsVictory() ? "Congrats, you won!" : "Sorry, you lost.";

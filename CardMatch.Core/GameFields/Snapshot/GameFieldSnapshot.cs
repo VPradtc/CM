@@ -7,6 +7,6 @@ namespace CardMatch.Core.GameFields.Snapshot
     {
         public int TurnsLeft { get; set; }
 
-        public ICollection<CardSnapshot> Cards { get; set; }
+        public List<CardSnapshot> Cards { get; set; }
     }
 }

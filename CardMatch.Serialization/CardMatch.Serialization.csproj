@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D66753BC-3BC1-4F31-98B0-FE9FEF95CB20}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C5B2BC12-EC8F-48E3-B4F9-0D0E9A11B4B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CardMatch.Console</RootNamespace>
-    <AssemblyName>CardMatch.Console</AssemblyName>
+    <RootNamespace>CardMatch.Serialization</RootNamespace>
+    <AssemblyName>CardMatch.Serialization</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,29 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameViewmodel.cs" />
-    <Compile Include="Modules.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\ISerializer_T.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XML\XmlSnapshotSerializer_T.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CardMatch.Core\CardMatch.Core.csproj">
-      <Project>{1ef4d654-46b0-44d1-90bc-59edaf6fca78}</Project>
-      <Name>CardMatch.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CardMatch.Serialization\CardMatch.Serialization.csproj">
-      <Project>{c5b2bc12-ec8f-48e3-b4f9-0d0e9a11b4b7}</Project>
-      <Name>CardMatch.Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CardMatch.TurnBased\CardMatch.TurnBased.csproj">
-      <Project>{4969d111-500c-4ecc-b85b-25817d0ae9fe}</Project>
-      <Name>CardMatch.TurnBased</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

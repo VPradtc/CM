@@ -2,6 +2,8 @@
 using CardMatch.Core.GameFields.Core;
 using CardMatch.Core.GameFields.Factory.Cards;
 using CardMatch.Core.GameFields.Globals;
+using CardMatch.Serialization.Core;
+using CardMatch.Serialization.XML;
 using CardMatch.TurnBased.Facade;
 using Ninject.Modules;
 
@@ -16,6 +18,8 @@ namespace CardMatch.ConsoleApp
             Kernel.Bind<ICardContainer>().ToMethod(ctx => CardContainer.Instance);
             Kernel.Bind<GameField>().ToSelf();
             Kernel.Bind<ITurnBasedGameFieldFacade>().To<TurnBasedGameFieldFacade>();
+
+            Kernel.Bind(typeof(ISerializer<>)).To(typeof(XmlSnapshotSerializer<>));
         }
     }
 }
