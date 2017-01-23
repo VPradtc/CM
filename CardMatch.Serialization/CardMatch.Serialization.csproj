@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Core\ISerializer_T.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XML\CacheXmlSerializer_T.cs" />
     <Compile Include="XML\XmlSnapshotSerializer_T.cs" />
   </ItemGroup>
   <ItemGroup />
