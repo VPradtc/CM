@@ -43,6 +43,8 @@
     <Compile Include="GameFields\Cards\Bonus\RemovePairs\RemovePairsBonusCard.cs" />
     <Compile Include="GameFields\Factory\Cards\CardFactory.cs" />
     <Compile Include="GameFields\Factory\Cards\ICardFactory.cs" />
+    <Compile Include="GameFields\Factory\Cards\ICardSelector.cs" />
+    <Compile Include="GameFields\Factory\Cards\RandomCardSelector.cs" />
     <Compile Include="GameFields\Factory\Core\IGameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\Core\GameFieldFactory.cs" />
     <Compile Include="GameFields\Factory\AverageGameFieldFactory.cs" />

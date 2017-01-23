@@ -19,6 +19,8 @@ namespace CardMatch.ConsoleApp
             Kernel.Bind<GameField>().ToSelf();
             Kernel.Bind<ITurnBasedGameFieldFacade>().To<TurnBasedGameFieldFacade>();
 
+            Kernel.Bind<ICardSelector>().To<RandomCardSelector>();
+
             Kernel.Bind(typeof(ISerializer<>)).To(typeof(XmlSnapshotSerializer<>));
         }
     }

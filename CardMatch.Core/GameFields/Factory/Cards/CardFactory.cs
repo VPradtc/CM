@@ -9,11 +9,11 @@ namespace CardMatch.Core.GameFields.Factory.Cards
 {
     public class CardFactory : ICardFactory
     {
-        private readonly ICardContainer _container;
+        private readonly ICardSelector _cardSelector;
 
-        public CardFactory(ICardContainer container)
+        public CardFactory(ICardSelector cardSelector)
         {
-            _container = container;
+            _cardSelector = cardSelector;
         }
 
         public ICard[] Create(int cardCount)
@@ -25,21 +25,16 @@ namespace CardMatch.Core.GameFields.Factory.Cards
 
             var pairCount = cardCount / 2;
 
-            var identifiers = _container.GetSupportedIdentifiers();
-
-            var pairs = Enumerable.Range(0, pairCount).Select(index => CreatePair(index, identifiers));
+            var pairs = Enumerable.Range(0, pairCount).Select(index => CreatePair());
 
             var cards = pairs.SelectMany(pair => new List<ICard> { pair.Item1, pair.Item2 }).ToList().Shuffle().ToArray();
 
             return cards;
         }
 
-        private Tuple<ICard, ICard> CreatePair(int index, string[] identifiers)
+        private Tuple<ICard, ICard> CreatePair()
         {
-            var identifierIndex = index % identifiers.Length;
-            var identifier = identifiers[identifierIndex];
-
-            var card = _container.GetCard(identifier);
+            var card = _cardSelector.GetNext();
 
             return new Tuple<ICard, ICard>(card, card.Clone());
         }
