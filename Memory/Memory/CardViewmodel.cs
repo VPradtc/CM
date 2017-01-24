@@ -7,22 +7,28 @@ using System.Windows.Media.Imaging;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
+using Pairs.Client.Statuses;
+using Pairs.Client;
 
 namespace Pairs
 {
     public class CardViewmodel : INotifyPropertyChanged
     {
-        private readonly BitmapImage frontImage;
-        private readonly BitmapImage backImage;
         private readonly string name;
+
+        public ICardViewmodelStatus ModelStatus { get; set; }
 
         public CardViewmodel(string name, BitmapImage frontImage, BitmapImage backImage)
         {
             this.name = name;
-            this.frontImage = frontImage;
-            this.backImage = backImage;
 
-            this.Status = CardState.Covered;
+            var imageSet = new CardImageSet()
+            {
+                BackImage = backImage,
+                FrontImage = frontImage,
+            };
+
+            ModelStatus = new CoveredCardViewmodelStatus(imageSet, this);
         }
 
         public string Name
@@ -30,50 +36,32 @@ namespace Pairs
             get { return name; }
         }
 
-        public CardState Status { get; set; }
+        public CardStatus Status
+        {
+            get
+            {
+                return ModelStatus.Status;
+            }
+        }
 
         public Brush ActiveImage
         {
             get
             {
-                if (this.Status == CardState.Covered)
-                {
-                    var brush = new ImageBrush(backImage);
-                    brush.Stretch = Stretch.Uniform;
-                    return brush;
-                }
-
-                if (this.Status == CardState.Uncovered)
-                {
-                    var brush = new ImageBrush(frontImage);
-                    brush.Stretch = Stretch.Uniform;
-                    return brush;
-                }
-
-                if (this.Status == CardState.Matched)
-                {
-                    return new SolidColorBrush(Colors.Transparent);
-                }
+                return ModelStatus.ActiveImage;
 
                 throw new InvalidOperationException("Invalid Card State.");
             }
         }
 
-        public void Uncover()
+        public void TriggerStatusChange()
         {
-            this.Status = CardState.Uncovered;
-            RaiseNotifyChanged("ActiveImage");
-        }
-
-        public void Cover()
-        {
-            this.Status = CardState.Covered;
             RaiseNotifyChanged("ActiveImage");
         }
 
         public void Match()
         {
-            this.Status = CardState.Matched;
+            this.ModelStatus = new MatchedCardViewmodelStatus();
             RaiseNotifyChanged("ActiveImage");
         }
 
@@ -86,12 +74,5 @@ namespace Pairs
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-    }
-
-    public enum CardState
-    {
-        Covered,
-        Uncovered,
-        Matched
     }
 }

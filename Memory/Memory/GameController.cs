@@ -85,7 +85,7 @@ namespace Pairs
             var card = cardRectangle.DataContext as CardViewmodel;
 
             // Check if this card can still be played.
-            if (card.Status != CardState.Covered)
+            if (card.Status != CardStatus.Covered)
             {
                 return;
             }
@@ -115,7 +115,7 @@ namespace Pairs
             }
 
 
-            if (!gameCards.Exists(c => c.Status == CardState.Covered))
+            if (!gameCards.Exists(c => c.Status == CardStatus.Covered))
             {
                 state = GameState.GameOver;
             }
@@ -201,14 +201,7 @@ namespace Pairs
 
             FlipCardRectangle(cardRectangle, 1, 0);
 
-            if (card.Status == CardState.Covered)
-            {
-                card.Uncover();
-            }
-            else
-            {
-                card.Cover();
-            }
+            card.ModelStatus.Flip();
 
             FlipCardRectangle(cardRectangle, 0, 1);
         }

@@ -65,14 +65,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CardImageSet.cs" />
+    <Compile Include="CardStatus.cs" />
     <Compile Include="CardViewmodel.cs" />
+    <Compile Include="Statuses\CardViewmodelStatus.cs" />
+    <Compile Include="Statuses\CoveredCardViewmodelStatus.cs" />
+    <Compile Include="Statuses\ICardViewmodelStatus.cs" />
     <Compile Include="GameCommands.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameOptions.cs" />
     <Compile Include="GameState.cs" />
-    <Compile Include="OptionWindow.xaml.cs">
-      <DependentUpon>OptionWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SinglePlayerGameController.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="ScoreControl.xaml.cs">
@@ -80,6 +82,8 @@
     </Compile>
     <Compile Include="SoundController.cs" />
     <Compile Include="SoundType.cs" />
+    <Compile Include="Statuses\MatchedCardViewmodelStatus.cs" />
+    <Compile Include="Statuses\UncoveredCardViewmodelStatus.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,10 +96,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="OptionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ScoreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
