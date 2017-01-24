@@ -42,32 +42,23 @@
 
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-            <TextBlock>Time Left:</TextBlock>
+                <TextBlock>Time Left:</TextBlock>
             </StatusBarItem>
             <StatusBarItem HorizontalContentAlignment="Stretch">
-            <ProgressBar x:Name="progressBarTimeLeft" Height="20" Maximum="200" Value="200"></ProgressBar>
+                <ProgressBar x:Name="progressBarTimeLeft" Height="20" Maximum="200" Value="200"></ProgressBar>
             </StatusBarItem>
         </StatusBar>
-        
+
         <!-- Player 1 Scores-->
         <Border x:Name="borderPlayer1" BorderThickness="3" Style="{StaticResource ResourceKey=BorderStyle}">
-        <StackPanel x:Name="stackPanelPlayer1" Style="{StaticResource ResourceKey=StackPanelStyle}">
-            <TextBlock Text="{Binding Name}"></TextBlock>
-            <local:ScoreControl x:Name="player1ScoreControl" Score="{Binding Path=Score}"/>
-        </StackPanel>
-        </Border>
-        
-        <!-- Player 2 Scores-->
-        <Border x:Name="borderPlayer2" BorderThickness="3" Style="{StaticResource ResourceKey=BorderStyle}">
-            <StackPanel x:Name="stackPanelPlayer2" Style="{StaticResource ResourceKey=StackPanelStyle}">
+            <StackPanel x:Name="stackPanelPlayer1" Style="{StaticResource ResourceKey=StackPanelStyle}">
                 <TextBlock Text="{Binding Name}"></TextBlock>
-                <local:ScoreControl x:Name="player2ScoreControl" Score="{Binding Path=Score}"></local:ScoreControl>
+                <local:ScoreControl x:Name="player1ScoreControl" Score="{Binding Path=Score}"/>
             </StackPanel>
         </Border>
 
-
         <Grid x:Name="gameGrid" DockPanel.Dock="Left" ShowGridLines="False" Background="LightBlue">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -94,7 +85,7 @@
                 Fill="{Binding Path=ActiveImage}"
                 Style="{StaticResource ResourceKey=RectangleStyle}"
              />
-                
+
             <Rectangle 
                 Grid.Row="0" Grid.Column="1" 
                 Fill="{Binding Path=ActiveImage}"
@@ -124,7 +115,7 @@
                 Fill="{Binding Path=ActiveImage}"
                 Style="{StaticResource ResourceKey=RectangleStyle}"
              />
-            
+
             <!-- Second Row-->
 
             <Rectangle 

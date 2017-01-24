@@ -10,27 +10,25 @@ using System.Windows;
 
 namespace Pairs
 {
-    public class Card : INotifyPropertyChanged
+    public class CardViewmodel : INotifyPropertyChanged
     {
-
         private readonly BitmapImage frontImage;
         private readonly BitmapImage backImage;
         private readonly string name;
 
-
-        public Card (string name, BitmapImage frontImage, BitmapImage backImage)
-	    {
+        public CardViewmodel(string name, BitmapImage frontImage, BitmapImage backImage)
+        {
             this.name = name;
             this.frontImage = frontImage;
             this.backImage = backImage;
 
             this.Status = CardState.Covered;
-	    }
+        }
 
         public string Name
         {
             get { return name; }
-        } 
+        }
 
         public CardState Status { get; set; }
 
@@ -44,7 +42,7 @@ namespace Pairs
                     brush.Stretch = Stretch.Uniform;
                     return brush;
                 }
-                
+
                 if (this.Status == CardState.Uncovered)
                 {
                     var brush = new ImageBrush(frontImage);
@@ -54,7 +52,7 @@ namespace Pairs
 
                 if (this.Status == CardState.Matched)
                 {
-                    return new SolidColorBrush(Colors.LightBlue);
+                    return new SolidColorBrush(Colors.Transparent);
                 }
 
                 throw new InvalidOperationException("Invalid Card State.");

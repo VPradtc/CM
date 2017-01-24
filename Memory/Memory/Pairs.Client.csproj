@@ -65,7 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Card.cs" />
+    <Compile Include="CardViewmodel.cs" />
     <Compile Include="GameCommands.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameOptions.cs" />

@@ -17,9 +17,9 @@ namespace Pairs
 
         protected GameState state = GameState.Running;
 
-        protected List<Card> gameCards;
+        protected List<CardViewmodel> gameCards;
 
-        private Stack<KeyValuePair<Card, Rectangle>> candidateStack = new Stack<KeyValuePair<Card, Rectangle>>();
+        private Stack<KeyValuePair<CardViewmodel, Rectangle>> candidateStack = new Stack<KeyValuePair<CardViewmodel, Rectangle>>();
 
         protected Random random = new Random(DateTime.Now.Millisecond);
 
@@ -39,7 +39,7 @@ namespace Pairs
 
         protected void PushCardOnCandidateStack(Rectangle cardRectangle)
         {
-            candidateStack.Push(new KeyValuePair<Card, Rectangle>((Card)cardRectangle.DataContext, cardRectangle));
+            candidateStack.Push(new KeyValuePair<CardViewmodel, Rectangle>((CardViewmodel)cardRectangle.DataContext, cardRectangle));
         }
 
         protected int CardsOnStack
@@ -50,9 +50,9 @@ namespace Pairs
             }
         }
 
-        private List<Card> AssignCardsToGameGrid(Grid gameGrid, List<Card> initialCardCollection)
+        private List<CardViewmodel> AssignCardsToGameGrid(Grid gameGrid, List<CardViewmodel> initialCardCollection)
         {
-            List<Card> gameCardCollection = new List<Card>();
+            List<CardViewmodel> gameCardCollection = new List<CardViewmodel>();
 
             for (int row = 0; row < 6; row++)
             {
@@ -65,7 +65,7 @@ namespace Pairs
 
                     int randomCardNumber = random.Next(0, initialCardCollection.Count);
 
-                    Card card = initialCardCollection[randomCardNumber];
+                    CardViewmodel card = initialCardCollection[randomCardNumber];
 
                     gameCardCollection.Add(card);
                     rectangle.DataContext = card;
@@ -80,10 +80,9 @@ namespace Pairs
 
         public void PickCard(Rectangle cardRectangle)
         {
-
             if (state == GameState.GameOver) return;
 
-            Card card = cardRectangle.DataContext as Card;
+            var card = cardRectangle.DataContext as CardViewmodel;
 
             // Check if this card can still be played.
             if (card.Status != CardState.Covered)
@@ -130,7 +129,7 @@ namespace Pairs
             }
         }
 
-        protected virtual void OnCardPicked(Card card)
+        protected virtual void OnCardPicked(CardViewmodel card)
         {
         }
 
@@ -198,7 +197,7 @@ namespace Pairs
 
         protected void FlipCard(Rectangle cardRectangle)
         {
-            Card card = cardRectangle.DataContext as Card;
+            CardViewmodel card = cardRectangle.DataContext as CardViewmodel;
 
             FlipCardRectangle(cardRectangle, 1, 0);
 
@@ -214,19 +213,19 @@ namespace Pairs
             FlipCardRectangle(cardRectangle, 0, 1);
         }
 
-        protected List<Card> CreateCards()
+        protected List<CardViewmodel> CreateCards()
         {
-            List<Card> cards = new List<Card>();
+            List<CardViewmodel> cards = new List<CardViewmodel>();
 
             BitmapImage backgroundImage = GetImage("images/background.jpg");
 
             for (int x = 1; x < 19; x++)
             {
                 BitmapImage frontImage = GetImage(String.Format("images/{1}/R{0}.png", x, iconSet));
-                Card a = new Card(x.ToString(), frontImage, backgroundImage);
+                CardViewmodel a = new CardViewmodel(x.ToString(), frontImage, backgroundImage);
 
                 frontImage = GetImage(String.Format("images/{1}/R{0}.png", x, iconSet));
-                Card b = new Card(x.ToString(), frontImage, backgroundImage);
+                CardViewmodel b = new CardViewmodel(x.ToString(), frontImage, backgroundImage);
 
                 cards.Add(a);
                 cards.Add(b);
@@ -238,7 +237,7 @@ namespace Pairs
 
         protected void MatchCard(Rectangle rectangle)
         {
-            Card card = rectangle.DataContext as Card;
+            CardViewmodel card = rectangle.DataContext as CardViewmodel;
             card.Match();
         }
 
@@ -246,7 +245,7 @@ namespace Pairs
         {
             gameGrid.Children.OfType<Rectangle>().ToList().ForEach(rec => rec.DataContext = null);
             soundController.Play(SoundType.Pop);
-            List<Card> initialCards = CreateCards();
+            List<CardViewmodel> initialCards = CreateCards();
             gameCards = AssignCardsToGameGrid(gameGrid, initialCards);
             state = GameState.Running;
             //Inform, that game has started.
